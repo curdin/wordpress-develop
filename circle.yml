@@ -3,7 +3,6 @@ machine:
   php:
     version:
       7.1.0
-      
 
 ## Customize dependencies
 dependencies:
