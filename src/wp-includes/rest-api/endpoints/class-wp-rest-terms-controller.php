@@ -182,6 +182,7 @@ class WP_REST_Terms_Controller extends WP_REST_Controller {
 			'per_page'   => 'number',
 			'search'     => 'search',
 			'slug'       => 'slug',
+			'slugs'       => 'slug',
 		);
 
 		$prepared_args = array();
@@ -979,6 +980,14 @@ class WP_REST_Terms_Controller extends WP_REST_Controller {
 		$query_params['slug'] = array(
 			'description'       => __( 'Limit result set to terms with a specific slug.' ),
 			'type'              => 'string',
+		);
+
+		$query_params['slugs'] = array(
+			'description'       => __( 'Limit result set to terms with a specific slug.' ),
+			'type'              => 'array',
+			'items'             => array(
+				'type'              => 'string'
+			),
 		);
 
 		/**
