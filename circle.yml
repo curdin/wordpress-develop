@@ -1,0 +1,10 @@
+## Customize the test machine
+machine:
+  php:
+    version:
+      7.1.0
+
+## Customize dependencies
+dependencies:
+  pre:
+    - cp wp-tests-config-sample.php wp-tests-config.php && sed -i "s/youremptytestdbnamehere/circle_test/" wp-tests-config.php && sed -i "s/yourusernamehere/ubuntu/" wp-tests-config.php && sed -i "s/yourpasswordhere//" wp-tests-config.php && sed -i "s/localhost/127.0.0.1/" wp-tests-config.php;
