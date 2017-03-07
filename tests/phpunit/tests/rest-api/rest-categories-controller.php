@@ -439,7 +439,6 @@ class WP_Test_REST_Categories_Controller extends WP_Test_REST_Controller_Testcas
 		$this->assertEquals( 'Taco', $data[2]['name'] );
 	}
 
-
 	public function test_get_terms_parent_arg() {
 		$category1 = $this->factory->category->create( array( 'name' => 'Parent' ) );
 		$this->factory->category->create( array( 'name' => 'Child', 'parent' => $category1 ) );
