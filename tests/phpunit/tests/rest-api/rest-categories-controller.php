@@ -418,11 +418,10 @@ class WP_Test_REST_Categories_Controller extends WP_Test_REST_Controller_Testcas
 	}
 
 	public function test_get_items_slug_array_arg() {
-		$this->factory->category->create( array( 'name' => 'Taco' ) );
-		$this->factory->category->create( array( 'name' => 'Burrito' ) );
-		$this->factory->category->create( array( 'name' => 'Enchilada' ) );
+		$id1 = $this->factory->category->create( array( 'name' => 'Taco' ) );
+		$id2 = $this->factory->category->create( array( 'name' => 'Enchilada' ) );
+		$id3 = $this->factory->category->create( array( 'name' => 'Burrito' ) );
 		$this->factory->category->create( array( 'name' => 'Pizza' ) );
-		$this->factory->category->create( array( 'name' => 'Curry' ) );
 		$request = new WP_REST_Request( 'GET', '/wp/v2/categories' );
 		$request->set_param( 'slug', array(
 			'taco',
