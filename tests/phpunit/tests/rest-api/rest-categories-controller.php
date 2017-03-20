@@ -417,6 +417,27 @@ class WP_Test_REST_Categories_Controller extends WP_Test_REST_Controller_Testcas
 		$this->assertEquals( 'Apple', $data[0]['name'] );
 	}
 
+	public function test_get_items_slug_array_arg() {
+		$this->factory->category->create( array( 'name' => 'Taco' ) );
+		$this->factory->category->create( array( 'name' => 'Burrito' ) );
+		$this->factory->category->create( array( 'name' => 'Enchilada' ) );
+		$this->factory->category->create( array( 'name' => 'Pizza' ) );
+		$this->factory->category->create( array( 'name' => 'Curry' ) );
+		$request = new WP_REST_Request( 'GET', '/wp/v2/categories' );
+		$request->set_param( 'slug', array(
+			'taco',
+			'burrito',
+			'enchilada',
+		) );
+		$response = $this->server->dispatch( $request );
+		$this->assertEquals( 200, $response->get_status() );
+		$data = $response->get_data();
+		$this->assertEquals( 3, count( $data ) );
+		$this->assertEquals( 'Burrito', $data[0]['name'] );
+		$this->assertEquals( 'Enchilada', $data[1]['name'] );
+		$this->assertEquals( 'Taco', $data[2]['name'] );
+	}
+
 	public function test_get_terms_parent_arg() {
 		$category1 = $this->factory->category->create( array( 'name' => 'Parent' ) );
 		$this->factory->category->create( array( 'name' => 'Child', 'parent' => $category1 ) );
